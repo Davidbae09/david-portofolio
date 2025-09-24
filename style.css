@@ -6,14 +6,20 @@
 
 body {
   font-family: 'Montserrat', Arial, sans-serif;
-  overflow: auto;
-  height: 100vh;
   color: white;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .container {
-  height: 100%;
+  height: 100vh;
   width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
   position: relative;
 }
 
@@ -24,7 +30,7 @@ section {
   justify-content: center;
   align-items: center;
   position: relative;
-  will-change: transform;
+  scroll-snap-align: start;
   background-size: cover;
   background-position: center;
   background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(44, 44, 44, 0.8)), url('https://source.unsplash.com/random/1920x1080?dark');
@@ -33,6 +39,7 @@ section {
 #contact {
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 60px; /* Adjusted for footer */
 }
 
 .content {
@@ -114,6 +121,7 @@ p {
   margin: 0 0 2rem 0;
   object-fit: cover;
   border: 3px solid #ffd700;
+  display: block; /* Ensure visibility */
 }
 
 .btn {
@@ -372,7 +380,10 @@ nav a:hover::after {
   background: white;
   position: relative;
 }
-
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(68px); }
+}
 .scroll-dot {
   width: 12px;
   height: 12px;
@@ -381,6 +392,7 @@ nav a:hover::after {
   position: absolute;
   left: -4.5px;
   top: 0;
+  animation: scrollBounce 1.5s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
@@ -419,7 +431,7 @@ nav a:hover::after {
       height: 160px;
   }
 
-  .btn {
+  poignée {
       padding: 12px 24px;
       font-size: 1.1rem;
   }
